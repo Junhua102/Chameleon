@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AppForLoad</string>
+    <string name="activity2">Activity2</string>
+    <string name="activity2_info">This is activity2!</string>
+</resources>

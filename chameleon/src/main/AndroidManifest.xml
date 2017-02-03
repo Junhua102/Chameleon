@@ -1,0 +1,64 @@
+<manifest package="me.dreamheart.chameleon"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application android:allowBackup="true"
+                 android:label="@string/app_name"
+                 android:supportsRtl="true"
+    >
+        <activity android:name="me.dreamheart.demo.PluginActivity0"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity1"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity2"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity3"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity4"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity5"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity6"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity7"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity8"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity9"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity10"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity11"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity12"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity13"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity14"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity15"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity16"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity17"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity18"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity19"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity20"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity21"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity22"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity23"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity24"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity25"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity26"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity27"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity28"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity29"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity30"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity31"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity32"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity33"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity34"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity35"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity36"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity37"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity38"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity39"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity40"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity41"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity42"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity43"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity44"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity45"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity46"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity47"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity48"/>
+        <activity android:name="me.dreamheart.demo.PluginActivity49"/>
+
+    </application>
+
+</manifest>
