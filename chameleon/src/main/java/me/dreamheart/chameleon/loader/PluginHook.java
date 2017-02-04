@@ -6,6 +6,7 @@ import android.content.Context;
 import me.dreamheart.chameleon.Hook;
 import me.dreamheart.chameleon.common.PlugInfo;
 import me.dreamheart.chameleon.common.PluginContext;
+import me.dreamheart.chameleon.utils.Trace;
 
 /**
  * Created by Junhua Lv on 2017/1/28.
@@ -41,4 +42,10 @@ public class PluginHook implements Hook.HookListener {
     private Context attachBaseContext(Activity activity, Context orgContext) {
         return new PluginContext(context, plugInfo);
     }
+
+    @Override
+    public void onCreate(Object activity, Object savedInstanceState) {
+        Trace.store("Hook onCreate " + activity.getClass().getName());
+    }
+
 }

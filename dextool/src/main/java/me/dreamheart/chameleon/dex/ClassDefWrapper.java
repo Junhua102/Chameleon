@@ -1,16 +1,16 @@
 package me.dreamheart.chameleon.dex;
 
-import com.google.common.collect.Iterables;
 import org.jf.dexlib2.iface.Annotation;
 import org.jf.dexlib2.iface.ClassDef;
 import org.jf.dexlib2.iface.Field;
 import org.jf.dexlib2.iface.Method;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * Created by ljh102 on 2017/1/29.
@@ -18,12 +18,15 @@ import java.util.Set;
 public class ClassDefWrapper implements ClassDef {
 
     private ClassDef classDef;
-    private List<Method> methods = new ArrayList<>();
     private boolean changeAccessFlags = false;
     private int accessFlags;
+    private List<Method> virtualMethods = new ArrayList<>();
 
     public ClassDefWrapper(ClassDef classDef) {
         this.classDef = classDef;
+        for (Method method : classDef.getVirtualMethods()) {
+            virtualMethods.add(method);
+        }
     }
 
     public void setAccessFlags(int accessFlags) {
@@ -101,7 +104,7 @@ public class ClassDefWrapper implements ClassDef {
     @Nonnull
     @Override
     public Iterable<? extends Method> getVirtualMethods() {
-        return Iterables.concat(classDef.getVirtualMethods(), methods);
+        return virtualMethods;
     }
 
     @Nonnull
@@ -126,6 +129,25 @@ public class ClassDefWrapper implements ClassDef {
     }
 
     public void addMethod(Method method) {
-        methods.add(method);
+        virtualMethods.add(method);
+    }
+
+    public void replaceVirtualMethod(Method method){
+        for (int i = 0; i < virtualMethods.size(); i++) {
+            if (virtualMethods.get(i).getName().equals(method.getName())) {
+                virtualMethods.set(i, method);
+                return;
+            }
+        }
+        // 没找到则直接添加
+        addMethod(method);
+    }
+
+    public Method getVirtualMethod(String name){
+        for (Method method : virtualMethods) {
+            if (method.getName().equals(name))
+                return method;
+        }
+        return null;
     }
 }

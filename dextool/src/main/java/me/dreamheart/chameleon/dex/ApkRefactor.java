@@ -120,11 +120,24 @@ public class ApkRefactor {
         return false;
     }
 
+    /**
+     * @param dexData
+     * @param apkInfo
+     * @param refactorItems
+     * @param outputStream
+     * @param tempFileDir
+     * @throws Exception
+     */
     private static void refactoring(byte[] dexData, ApkInfo apkInfo, final List<RefactorItem> refactorItems, OutputStream outputStream, String tempFileDir) throws Exception{
         DexBackedDexFile dexBackedDexFile = DexBackedDexFile.fromInputStream(Opcodes.forApi(Config.ApiLevel), new ByteArrayInputStream(dexData));
 
         DexRewriter accessFlagRewriter = new DexRewriter(new RewriterModule() {
 
+            /**
+             * 将同包名其他类的Field由default改成public
+             * @param rewriters
+             * @return
+             */
             @Nonnull
             @Override
             public Rewriter<Field> getFieldRewriter(@Nonnull Rewriters rewriters) {
@@ -146,6 +159,11 @@ public class ApkRefactor {
                 };
             }
 
+            /**
+             * 将同包名其他类的Method由default改成public
+             * @param rewriters
+             * @return
+             */
             @Nonnull
             @Override
             public Rewriter<Method> getMethodRewriter(@Nonnull Rewriters rewriters) {
@@ -200,6 +218,7 @@ public class ApkRefactor {
         for (ClassDef classDef: fileWrapper.getClasses()) {
             for (RefactorItem refactorItem : refactorItems) {
 
+                // 同包名的类，将访问权限由default改成public
                 if (refactorItem.isSamePackage(classDef.getType()) &&
                         AccessFlagUtils.isDefault(classDef.getAccessFlags())) {
                     ClassDefWrapper classDefWrapper = new ClassDefWrapper(classDef);
@@ -218,8 +237,14 @@ public class ApkRefactor {
                     } else {
                         classDefWrapper = new ClassDefWrapper(classDef);
                     }
+                    // 向Activity注入attachBaseContext的钩子代码
                     Method attachBaseContextMethod = InjectMethodBuilder.buildAttachBaseContextMethod(activityType);
                     classDefWrapper.addMethod(attachBaseContextMethod);
+                    // 向Activity注入onCreate的钩子代码
+                    Method onCreateMethod = classDefWrapper.getVirtualMethod("onCreate");
+                    Method onCreateMethodInjected = InjectMethodBuilder.buildOnCreateMethod(activityType, onCreateMethod);
+                    classDefWrapper.replaceVirtualMethod(onCreateMethodInjected);
+
                     classDef = classDefWrapper;
                 }
             }
