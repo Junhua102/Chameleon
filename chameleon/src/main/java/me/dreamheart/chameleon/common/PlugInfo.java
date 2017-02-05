@@ -138,7 +138,7 @@ public class PlugInfo implements Serializable {
 	}
 	public void addActivity(ResolveInfo activity) {
 		if (activities == null) {
-            activities = new HashMap<String, ResolveInfo>(15);
+            activities = new HashMap<>(32);
         }
         fixActivityInfo(activity.activityInfo);
         activities.put(activity.activityInfo.name,activity);
@@ -149,6 +149,12 @@ public class PlugInfo implements Serializable {
 			mainActivity = activity;
 		}
 	}
+
+	public void resetActivityMap () {
+        if (activities != null) {
+            activities = new HashMap<>(32);
+        }
+    }
 
     private void fixActivityInfo(ActivityInfo activityInfo) {
         if (activityInfo != null) {

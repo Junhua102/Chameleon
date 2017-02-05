@@ -11,6 +11,7 @@ import android.content.res.Resources;
 import java.io.File;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,10 +46,13 @@ public class PluginInstaller {
         // 搜索所有activity，并设置对应的替换名称
         int activityIndex = 0;
         List<ApkRefactor.RefactorItem> refactorItems = new ArrayList<>();
-        for (ResolveInfo resolveInfo : info.getActivities()) {
+        Collection<ResolveInfo> activities = info.getActivities();
+        info.resetActivityMap();
+        for (ResolveInfo resolveInfo : activities) {
             String pluginActivityName = "me.dreamheart.demo.PluginActivity" + activityIndex;
             refactorItems.add(new ApkRefactor.RefactorItem(resolveInfo.activityInfo.name, pluginActivityName));
             resolveInfo.activityInfo.name = pluginActivityName;
+            info.addActivity(resolveInfo);
             activityIndex ++;
         }
         ApkRefactor.ApkInfo apkInfo = new ApkRefactor.ApkInfo(info.getPackageInfo().packageName);

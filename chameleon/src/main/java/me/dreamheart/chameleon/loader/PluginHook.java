@@ -2,6 +2,7 @@ package me.dreamheart.chameleon.loader;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 
 import me.dreamheart.chameleon.Hook;
 import me.dreamheart.chameleon.common.PlugInfo;
@@ -46,6 +47,11 @@ public class PluginHook implements Hook.HookListener {
     @Override
     public void onCreate(Object activity, Object savedInstanceState) {
         Trace.store("Hook onCreate " + activity.getClass().getName());
+        ActivityInfo activityInfo = plugInfo.findActivityByClassName(activity.getClass().getName());
+        int themeResource = activityInfo.getThemeResource();
+        if (themeResource != 0) {
+            ((Activity) activity).setTheme(themeResource);
+        }
     }
 
 }

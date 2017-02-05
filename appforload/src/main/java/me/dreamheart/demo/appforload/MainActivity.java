@@ -20,6 +20,8 @@ public class MainActivity extends Activity {
         new TestClass().test();
         new TestClass.TestSubClass().test(TestClass.TestSubClass.testStr);
         new TestClass.TestSubClass.TestSubSubClass().test();
+//        ApplicationInfo appInfo = this.getPackageManager().getApplicationInfo(this.getPackageName(), PackageManager.GET_META_DATA);
+//        appInfo.metaData.getInt("DH_APP_CHANNEL");
     }
 
 }
